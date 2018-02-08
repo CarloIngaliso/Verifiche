@@ -28,7 +28,7 @@ public class Main{
 				System.out.println("\t\t" + passeggeri[i][j].getName() + " avviato");
 			}
 		}
-		Bus autobus = new Bus("Trenino Thomas");
+		Bus autobus = new Bus("Bus");
 		System.out.println("Partenza bus");
 		for(int i=0; i<NUMERO_FERMATE; i++){
 			System.out.println("\tAutobus per strada in direzione della fermata " + i);
@@ -38,6 +38,7 @@ public class Main{
 			for(int j=0; j<passeggeri[i].length; j++){
 				passeggeri[i][j].setBus(autobus);
 				passeggeri[i][j].interrupt();
+				//test funzionamento step by step
 				//System.out.println("\t\t" + passeggeri[i][j].getName() + " prova a salire");
 				//if(autobus.sale(passeggeri[i][j])) System.out.println("\t\t" + passeggeri[i][j].getName() + " è salito");
 				//else System.out.println("\t\t" + passeggeri[i][j].getName() + "NON è salito");
