@@ -3,6 +3,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.*;
 
 public class Bus{
+	
 	public static final int NUMERO_POSTI = 10;
 	private Lock sezioneCritica;
 	private Semaphore postiLiberi;
@@ -20,30 +21,32 @@ public class Bus{
 		this.name = name;
 	}
 	public int getStop(){
-		return stopNumber;
+	return stopNumber;
 	}
+	
 	public boolean sale(Passeggero passeggero){
-		int i;
+	    int i;
 	    boolean salito=false;
-		sezioneCritica.lock();
-		if(postiLiberi.tryAcquire()){
-		    salito=true;
-		    passeggero.setBus(this);
-            for(i=0; passeggeri[i] != null; i++);
-            passeggeri[i] = passeggero;
-			postiOccupati.release();
+	    sezioneCritica.lock();
+	    if(postiLiberi.tryAcquire()){
+		salito=true;
+		passeggero.setBus(this);
+                for(i=0; passeggeri[i] != null; i++);
+                    passeggeri[i] = passeggero;
+		    postiOccupati.release();
         }
-        sezioneCritica.unlock();
-		return salito;
+            sezioneCritica.unlock();
+	    return salito
 	}
+	
 	public void scende(Passeggero passeggero){
 		int i;
 		sezioneCritica.lock();
-			postiOccupati.tryAcquire();
-			for(i=0; passeggeri[i].getName()!=passeggero.getName(); i++);
-			passeggeri[i] = null;
-			postiLiberi.release();
-			passeggero.setBus(null);
+		postiOccupati.tryAcquire();
+		for(i=0; passeggeri[i].getName()!=passeggero.getName(); i++);
+		    passeggeri[i] = null;
+		    postiLiberi.release();
+		    passeggero.setBus(null);
 		sezioneCritica.unlock();
 	}
 	
